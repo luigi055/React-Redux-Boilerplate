@@ -4,7 +4,7 @@ This is a modern webpack full feature configuration boilerplate for __React__ v1
 ## Table of contents
 - [Next To Do](#next-to-do)
 - [Vistual Studio Code Extensions](#visual-studio-code-extensions)
-- [OS Compatibility](os-compatibility)
+- [OS Compatibility](#os-compatibility)
 - [Installation](#installation)
   - [Global Packages](#global-packages)
 - [Enviroments](#enviroments)
@@ -66,7 +66,7 @@ any problem related with Operating System please i'll be glad to know about it. 
 
 First step clone this repo
 ```
-$git clone ......
+$git clone https://github.com/luigi055/React-Redux-Boilerplate
 ```
 And then dependning wheather you use npm or yarn
 
