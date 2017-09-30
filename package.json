@@ -70,7 +70,6 @@
     "node-sass": "^4.5.0",
     "pixrem": "4.0.1",
     "postcss-loader": "2.0.6",
-    "postcss-vmin": "3.0.0",
     "postcss-will-change": "2.0.0",
     "prettier": "1.7.2",
     "react-hot-loader": "3.0.0-beta.6",

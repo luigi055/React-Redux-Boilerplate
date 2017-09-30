@@ -4,6 +4,7 @@ This is a modern webpack full feature configuration boilerplate for __React__ v1
 ## Table of contents
 - [Next To Do](#next-to-do)
 - [Vistual Studio Code Extensions](#visual-studio-code-extensions)
+- [OS Compatibility](os-compatibility)
 - [Installation](#installation)
   - [Global Packages](#global-packages)
 - [Enviroments](#enviroments)
@@ -13,10 +14,9 @@ This is a modern webpack full feature configuration boilerplate for __React__ v1
 - [React](#react)
 - [redux](#redux)
   - [Redux Devtool](#redux-devtool)
-- [Babel](#babel)
 - [prettier](#prettier)
-- [eslint](#eslint)
 - [Babel](#babel)
+- [eslint](#eslint)
 - [Flow](#flow)
 - [css](#css)
   - [Global Styles by default](#global-styles-by-default)
@@ -27,19 +27,23 @@ This is a modern webpack full feature configuration boilerplate for __React__ v1
 - [PostCSS](#postcss)
   - [autoprefixer](#autoprefixer)
   - [stylelint](#stylelint)
+  - [Other Plugins](#other-plugins)
+  - [Useful other Plugins (NOT INCLUDED)](#useful-other-plugins)
 - [Fonts](#fonts)
   - [FontAwesome](#fontawesome)
-- [Images](#Images)
+- [Images](#images)
 - [HTML](#html)
-- [Favicon & static files](#favicon-&-static-files)
+- [Favicon and static files](#favicon-and-static-files)
 - [Proxy](#proxy)
+- [Clearing Public Folder](clearing-public-folder)
+- [Software used](#software-used)
 - [Author](#author)
 - [license](#license)
 
 ## Next To Do
 - [ ] Redux hot module replacement
 - [ ] favicon correctly
-- [ ] fonts not supported yet
+- [ ] __SVG fonts__ not supported yet. _only as images_
 
 ## Visual Studio Code Extensions
 - Babel ES6 / ES7
@@ -51,6 +55,12 @@ This is a modern webpack full feature configuration boilerplate for __React__ v1
 - open in browser
 - prettier - javascript formatter
 - stylelint
+
+## OS Compatibility
+
+This boilerplate is thought to be use in multi platform specificlly in windows 7, 8, 10, linux (tested in ubuntu, antergos), and in OSX.
+
+any problem related with Operating System please i'll be glad to know about it. so, create an issue.
 
 ## Installation
 
@@ -77,7 +87,7 @@ In order to have all the power of this boilerplate you can donwload the followin
 - [babel](https://babeljs.io/) (Javascript compiler)
 - [stylelint](https://stylelint.io/) (linter for css)
 - [webpack](https://webpack.js.org/) (Module bundler)
-- (webpack-dev-server)[https://github.com/webpack/webpack-dev-server]
+- [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
 - [flow](https://flow.org/) (Static type checker)
 - [flow-typed](https://github.com/flowtype/flow-typed) (A central repository for Flow library definitions)
 - [mocha](https://mochajs.org/) (Test Runner)
@@ -145,6 +155,74 @@ aditional the boilerplate comes with 2 popular redux middleware already installe
 
 ### Redux Devtool
 devtool is already configured to work activilly in development and stop working in production. all of this code is in configStore.js in the /redux folder.
+
+## Babel
+modern EcmaScript features is all support thanks to babel which compile and transpile our ES6+ (latest versions of the language), JSX, Flow  to ES5 or which ever version we want
+
+Additional you could use modern syntax when creating stateful components with transform-class-plugin
+which allow you to use this syntax in addition to the clasical ES6 class Syntax:
+
+```
+class Search extends Component {
+  state = {
+    searchTerm: '',
+  };
+
+  handleSearchTermChange = event => {
+    this.setState ({
+      searchTerm: event.target.value,
+    });
+  };
+
+  render () {
+    return (
+      <div>
+        <input
+          type="text"
+          onChange={this.handleSearchTermChange}
+          value={this.state.searchTerm}
+          placeholder="Searh and try HOT MODULE REPLACEMen"
+        />
+        <h2>{this.state.searchTerm}</h2>
+      </div>
+    );
+  }
+}
+```
+
+## ESLint
+Eslint is completely enable and properly setted to use with React using the popular airbnb eslint rules and also with react, prettier and flow linting
+
+You can also run the following script to check linting of all your code
+
+```
+$yarn run lint
+```
+
+## Prettier
+the popular autoformatter is also available in this boilerplate so to take the most out of this feature you should install the equivalent plugin or extension to your favourite IDE or Text Editor. [Read mor about prettier editor integration](https://github.com/prettier/prettier#editor-integration)
+
+use this script in order to autoformat your code
+```
+$yarn run format
+```
+
+## Flow
+Flow type checker supported by default and ready to use via yarn or npm script
+
+init flow 
+```
+$yarn runt flow:init
+```
+
+Other scripts
+```
+$yarn run flow:start
+$yarn run flow:stop
+$yarn run flow:status
+$yarn run flow:coverage
+```
+
 
 ## CSS
 This boilerplate support various ways to styling your app
@@ -217,7 +295,7 @@ to learn more about styled-components go to the official [website](https://www.s
 ## SASS
 As you could noticed previously this boilerplate have a big support on sass preprocesor so you can keep working modularity with sass syntax even with styled-components and css-modules
 
-### Boostrap 4
+### Bootstrap 4
 you can donwload and start using bootstrap framework if you like. just have to do some installations and configuration to have this done.
 
 first lets install some packages
@@ -276,6 +354,80 @@ Done!
 Now you will be able to use this amazing framework with your application
 
 you can also see my multi porpuse boilerplate that have it installed and working properly [multiporpuse-webpack-boilerplate](https://github.com/luigi055/Multi-purpose-webpack3-boilerplate)
+
+## PostCSS
+you can use postCSS features and plugins in your .css or .scss files directly. this boilerplate take advantage of this awesome tool features.
+You can go to postcss.config.js and check the available options and plugins
+### Autoprefixer
+Add vendor prefixes to CSS rules using values from Can I Use. Autoprefixer will use the data based on current browser popularity and property support to apply prefixes for you.
+
+in postcss.config.js you can point to browsers your app will support
+```
+...
+autoprefixer({
+  browsers: ['last 2 versions', 'ie >= 10', 'and_chr >= 2.3'],
+}),
+...
+```
+
+### StyleLint
+Enforce consistent conventions and avoid errors in your stylesheets with stylelint, a modern CSS linter. It supports the latest CSS syntax, as well as CSS-like syntaxes, such as SCSS.
+
+this is configured with default css rules by stylelint you can [see more here](https://stylelint.io/) and also check .stylelintrc file in the boilerplate. 
+
+__You could also need an editor or IDE extension or plugin to have this working__
+
+### Other Plugins
+theres is some other basics plugins installed and working in this boilerplate
+visit postcss.config.js to know more.
+
+#### PixRem
+Pixrem is a CSS post-processor that, given CSS and a root em value, returns CSS with pixel unit fallbacks or replacements. It's based on browser data so only needed fallbacks will be added. Basically, it's for IE8 or less, and for IE9 & IE10 in the font shorthand property and in pseudo-elements.
+
+#### will-change
+This plugin uses backface-visibility to force the browser to create a new layer, without overriding existing backface-visibility properties. This 3D CSS hack is commonly done with transform: translateZ(0), but backface-visibility is used here to avoid overriding the more popular transform property.
+
+These hacks are required for browsers that do not support will-change
+
+#### mqpacker
+MQPacker optimizes your media queries into single rules when possible:
+
+Pre-processors such as Sass make it easy to use media queries within a declaration,
+To reduce file sizes and (possibly) improve parsing times, MQPacker packs multiple declarations into one @media rule
+
+__Hot tip__: ensure the first media query declaration in your code defines all possible options in the order you want them even if there’s no actual difference. This guarantees MQPacker will define rules in the correct order.
+
+[mqoacket source](https://www.sitepoint.com/7-postcss-plugins-to-ease-you-into-postcss/)
+
+### Useful other Plugins
+####___(NOT INCLUDED)___
+PostCSS has a lot a plugins that could be super useful as your css tool.
+is fascinating how far have CSS Styling evolved thanks to javascript
+
+the following 2 plugins are personal recommendation but is __not included__ in this boilerplate
+ 
+
+#### CSS Nano Plugin
+cssnano compacts your CSS file to ensure the download is as small as possible in your production environment. Install it via:
+
+```
+$yarn add --dev cssnano
+```
+
+The plugin works by removing comments, whitespace, duplicate rules, outdated vendor prefixes and making other optimizations to typically save at least 50%. There are alternative options but cssnano is one of the best. Use it!
+
+[Learn More](http://cssnano.co/)
+
+#### Uncss Plugin
+UnCSS is a tool that removes unused CSS from your stylesheets. It works across multiple files and supports Javascript-injected CSS.
+
+```
+$yarn add --dev uncss
+```
+
+[You can test this feature here](https://uncss-online.com/)
+
+[Learn More](UnCSS is a tool that removes unused CSS from your stylesheets. It works across multiple files and supports Javascript-injected CSS.)
 
 ## Fonts
 thanks to webpack's file-loader and url-loader we can use fonts within our css easily. this feature comes included in the boilerplate. lets use which ever font you want.
@@ -353,7 +505,7 @@ new HTMLWebpackPlugin ({
 
 in [multiporpuse-webpack-boilerplate](https://github.com/luigi055/Multi-purpose-webpack3-boilerplate) since is thought to work mainly with html files. i created a html generator within webpack.config.js. in there i got a file calls /views here i put all of my html files and webpack automatically add those. if you want to know how this work. check that repo.
 
-## Favicon & static files
+## Favicon and Static Files
 
 This is mostly useful for loading files into your production build dist folder. Examples include:
 
@@ -420,6 +572,20 @@ devServer: {
 },
 ...
 ```
+
+## Clearing Public Folder
+There's an easy way to remove the public folder via npm or yarn script. sometimes we need to build it and we forget or ir annoying being removing it manually so you can remove this using the following script
+
+```
+$yarn run clear
+```
+## Software Used
+
+- [Hyper CLI](https://hyper.is/)
+- [visual studio code](https://code.visualstudio.com/)
+- [git with git flow](https://git-scm.com/)
+- [Haroopad](http://pad.haroopress.com/)
+- [yarn](https://yarnpkg.com/lang/en/docs/install/)
 
 ## Author
 -  __[Luigi055](https://github.com/luigi055)__

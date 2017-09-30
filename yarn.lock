@@ -5944,12 +5944,6 @@ postcss-value-parser@^3.0.1, postcss-value-parser@^3.0.2, postcss-value-parser@^
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/postcss-value-parser/-/postcss-value-parser-3.3.0.tgz#87f38f9f18f774a4ab4c8a232f5c5ce8872a9d15"
 
-postcss-vmin@3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/postcss-vmin/-/postcss-vmin-3.0.0.tgz#6d6ae6b3e84fe3ff7a4df1eb86f3a69a07e8a144"
-  dependencies:
-    postcss "^6.0.0"
-
 postcss-will-change@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/postcss-will-change/-/postcss-will-change-2.0.0.tgz#cff091a87a0386bab1f32a7cfa7f79d6b773e100"
