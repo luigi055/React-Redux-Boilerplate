@@ -5,30 +5,30 @@ This is a modern webpack full feature configuration boilerplate for __React__ v1
 - [Next To Do](#next-to-do)
 - [Vistual Studio Code Extensions](#visual-studio-code-extensions)
 - [Installation](#installation)
- - [Global Packages](#global-packages)
+  - [Global Packages](#global-packages)
 - [Enviroments](#enviroments)
- - [Production](#production)
- - [Development](#development)
- - [Test](#tets)
+  - [Production](#production)
+  - [Development](#development)
+  - [Test](#tets)
 - [React](#react)
 - [redux](#redux)
- - [Redux Devtool](#redux-devtool)
+  - [Redux Devtool](#redux-devtool)
 - [Babel](#babel)
 - [prettier](#prettier)
 - [eslint](#eslint)
 - [Babel](#babel)
 - [Flow](#flow)
 - [css](#css)
- - [Global Styles by default](#global-styles-by-default)
- - [css-modules](#css-modules)
- - [Styled Components](#styled-components)
+  - [Global Styles by default](#global-styles-by-default)
+  - [css-modules](#css-modules)
+  - [Styled Components](#styled-components)
 - [Sass](#sass)
- - [bootstrap 4](#bootstrap-4)
+  - [bootstrap 4](#bootstrap-4)
 - [PostCSS](#postcss)
- - [autoprefixer](#autoprefixer)
- - [stylelint](#stylelint)
+  - [autoprefixer](#autoprefixer)
+  - [stylelint](#stylelint)
 - [Fonts](#fonts)
- - [FontAwesome](#fontawesome)
+  - [FontAwesome](#fontawesome)
 - [Images](#Images)
 - [HTML](#html)
 - [Favicon & static files](#favicon-&-static-files)
@@ -88,7 +88,7 @@ This enviroment supports by default 3 enviroments
 - development: used by default for develop the entire app
 - test: which run our tests using mocha, chai, sinon, enzyme
 
-Tested usin node 6+, 7+ and 8+
+Tested using node 6+, 7+ and 8+
 
 ### Production
   in case you want to emulate a production enviroment use
