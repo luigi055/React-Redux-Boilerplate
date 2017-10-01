@@ -98,13 +98,13 @@ In order to have all the power of this boilerplate you can donwload the followin
 This boilerplate is created using the latest version of webpack which is v3
 and there is some consideration in order to this work properly
 
-### Relative vs absolute generates assets in html
+### Relative vs absolute generated assets in html
 
 be sure publicPath is set to "/" in the webpack output option. since this prevent generate relative assets. instead we want absolute path for all our address.
 
 this is relevant. Especially when you're working with __React Router__ 
 
-````
+```
 ...
 output: {
   path: path.resolve (__dirname, publicFile),
