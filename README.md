@@ -7,6 +7,7 @@ This is a modern webpack full feature configuration boilerplate for __React__ v1
 - [OS Compatibility](#os-compatibility)
 - [Installation](#installation)
   - [Global Packages](#global-packages)
+- [Webpack](#webpack)
 - [Enviroments](#enviroments)
   - [Production](#production)
   - [Development](#development)
@@ -91,6 +92,50 @@ In order to have all the power of this boilerplate you can donwload the followin
 - [flow](https://flow.org/) (Static type checker)
 - [flow-typed](https://github.com/flowtype/flow-typed) (A central repository for Flow library definitions)
 - [mocha](https://mochajs.org/) (Test Runner)
+
+## Webpack
+
+This boilerplate is created using the latest version of webpack which is v3
+and there is some consideration in order to this work properly
+
+### Relative vs absolute generates assets in html
+
+be sure publicPath is set to "/" in the webpack output option. since this prevent generate relative assets. instead we want absolute path for all our address.
+
+this is relevant. Especially when you're working with __React Router__ 
+
+````
+...
+output: {
+  path: path.resolve (__dirname, publicFile),
+  filename: 'bundle.js',
+  publicPath: '/', // <- this is important
+},
+...
+```
+__You don't need to add publicPath: '/' to webpack-dev-server__
+
+In order to react-router-dom works properly. it needs to have the script tag src path absolute and not relative. since when the route will change the path of the script tag src will change too
+
+this is a bad idea (relative)
+```
+<script src="bundle.js"></script>
+```
+
+If you have a second or a bigger level path in routes. example.
+```
+/blog/new
+```
+this will relate also the script path to
+http//localhost:3000/blog/bundle.js
+and will crash the route since the path doesn't exist.
+
+This is good solution(absolute)
+```
+<script src="/bundle.js"></script>
+```
+
+now the route will be http//localhost:3000/bundle.js (same but static) and accesible to all routes. :sparkles:
 
 ## Enviroments
 This enviroment supports by default 3 enviroments
@@ -200,7 +245,7 @@ $yarn run lint
 ```
 
 ## Prettier
-the popular autoformatter is also available in this boilerplate so to take the most out of this feature you should install the equivalent plugin or extension to your favourite IDE or Text Editor. [Read mor about prettier editor integration](https://github.com/prettier/prettier#editor-integration)
+the popular autoformatter is also available in this boilerplate so to take the most out of this feature you should install the equivalent plugin or extension to your favourite IDE or Text Editor. [Read more about prettier editor integration](https://github.com/prettier/prettier#editor-integration)
 
 use this script in order to autoformat your code
 ```
@@ -215,14 +260,52 @@ init flow
 $yarn runt flow:init
 ```
 
+This will create a .flowconfig file for you which is often enough.
+
 Other scripts
 ```
 $yarn run flow:start
 $yarn run flow:stop
-$yarn run flow:status
+$yarn run flow:status // default $flow
 $yarn run flow:coverage
 ```
 
+.flowconfig commonly, isnt necesary to configure anything else but sometimes there's some cases in which any package throw flow type errors from node_modules or in your code.
+
+Unlike ESLint, you do typically want to have Flow run on your dependencies to get those typings. However sometimes libraries ship broken types so you can just ignore them (like I did with styled-components.)
+
+for example a very common error at the time im writting this documentation there's types error with styled-components package. so the common fix is add the route to the ignore section of .flowconfig
+
+```
+[ignore]
+<PROJECT_ROOT>/node_modules/styled-components/* under 
+
+...
+```
+
+of course a better solution is not ignoring at all so. for that reason exist flow-typed node package. flow-typed is a repo of pre-typed common libraries.
+
+styled-components has being pre-typed be the group behind this awesome repo.
+
+```
+$yarn global add flow-typed
+``` 
+now look for if there is your package already typed:
+
+```
+flow-typed search styled-components
+```
+
+and then if any install the one according to your flow-bin version package:
+i.e. 
+for flow-bin0.56.0 use
+
+```
+$flow-typed install styled-components@2.x.x 
+```
+__(or whatever version you have installed.)__ 
+
+This will create a flow-typed directory that Flow already knows how to read from. In fact, check out the various type available to you.
 
 ## CSS
 This boilerplate support various ways to styling your app
