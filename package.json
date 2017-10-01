@@ -15,10 +15,11 @@
     "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha ./src/__test__/**/*.test.jsx --compilers js:babel-core/register",
     "test:watch": "yarn run test --watch",
     "flow:init": "flow init",
+    "flow:status": "flow status",
     "flow:start": "flow start",
     "flow:stop": "flow stop",
-    "flow:status": "flow status",
-    "flow:coverage": "flow coverage"
+    "flow:coverage": "flow coverage",
+    "flow:all": "flow check --all"
   },
   "repository": {
     "type": "git",
