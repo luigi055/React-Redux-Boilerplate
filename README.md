@@ -11,9 +11,11 @@ This is a modern webpack full feature configuration boilerplate for __React__ v1
 - [Enviroments](#enviroments)
   - [Production](#production)
   - [Development](#development)
-  - [Test](#tets)
+  - [Test](#test)
 - [React](#react)
 - [redux](#redux)
+  - [Using Redux in this Boilerplate](#using-redux-in-this-boilerplate)
+  - [Removing Redux from this boilerplate](#removing-redux-from-this-boilerplate)
   - [Redux Devtool](#redux-devtool)
 - [prettier](#prettier)
 - [Babel](#babel)
@@ -43,8 +45,8 @@ This is a modern webpack full feature configuration boilerplate for __React__ v1
 
 ## Next To Do
 - [ ] Redux hot module replacement
-- [ ] favicon correctly
 - [ ] __SVG fonts__ not supported yet. _only as images_
+_If you need support for svg fonts icons go to webpack.config.js and remove .svg extension in the image loader and add it in the file-loader section beside eot & ttf_
 
 ## Visual Studio Code Extensions
 - Babel ES6 / ES7
@@ -197,6 +199,44 @@ the Javascript state container we use to complement the React enviroment. also w
 aditional the boilerplate comes with 2 popular redux middleware already installed
 * Redux-thunk
 * Redux-promise
+
+### Using Redux in this Boilerplate
+redux is already configured in this boilerplate but everything is placed in the /redux folder
+
+so in order to use it with react you have to to go App.jsx and import Providr HOC from react-redux package and configure which is available in the boilerplate
+
+```
+import {Provider} from 'react-redux';
+
+import configure from './redux/store/configureStore';
+const store = configure ();
+```
+
+Then wrap your App component with the Provider Component and pass in the store as props.
+
+```
+...
+const App = () => (
+  <Provider store={store}>
+    <Router>
+      <Routes />
+    </Router>
+  </Provider>
+);
+...
+```
+
+And now you're ready for using redux in your project :sparkles:
+
+### Removing Redux from this boilerplate
+If you dont want to use redux in your app just remove the /redux folder in /src
+and all redux related packages
+
+```
+$yarn remove redux react-redux redux-thunk redux-promise
+```
+
+And now you are free to work only with React or use another state container.
 
 ### Redux Devtool
 devtool is already configured to work activilly in development and stop working in production. all of this code is in configStore.js in the /redux folder.
