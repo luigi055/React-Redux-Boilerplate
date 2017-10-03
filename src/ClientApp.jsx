@@ -8,7 +8,6 @@ const renderApp = () => {
 renderApp ();
 
 if (module.hot) {
-  console.log ('Hot Module Replacement Activated');
   module.hot.accept ('./App', () => {
     renderApp ();
   });
