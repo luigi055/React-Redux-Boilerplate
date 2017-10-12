@@ -13,7 +13,7 @@ This is a modern webpack full feature configuration boilerplate for __React__ v1
   - [Development](#development)
   - [Test](#test)
 - [React](#react)
-- [redux](#redux)
+- [Redux](#redux)
   - [Using Redux in this Boilerplate](#using-redux-in-this-boilerplate)
   - [Removing Redux from this boilerplate](#removing-redux-from-this-boilerplate)
   - [Redux Devtool](#redux-devtool)
@@ -203,7 +203,7 @@ aditional the boilerplate comes with 2 popular redux middleware already installe
 ### Using Redux in this Boilerplate
 redux is already configured in this boilerplate but everything is placed in the /redux folder
 
-so in order to use it with react you have to to go App.jsx and import Providr HOC from react-redux package and configure which is available in the boilerplate
+so in order to use it with react you have to to go App.jsx and import Provider HOC from react-redux package and configure module which is available in the boilerplate
 
 ```
 import {Provider} from 'react-redux';
