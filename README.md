@@ -13,7 +13,7 @@ This is a modern webpack full feature configuration boilerplate for __React__ v1
   - [Development](#development)
   - [Test](#test)
 - [React](#react)
-- [redux](#redux)
+- [Redux](#redux)
   - [Using Redux in this Boilerplate](#using-redux-in-this-boilerplate)
   - [Removing Redux from this boilerplate](#removing-redux-from-this-boilerplate)
   - [Redux Devtool](#redux-devtool)
@@ -36,6 +36,7 @@ This is a modern webpack full feature configuration boilerplate for __React__ v1
   - [FontAwesome](#fontawesome)
 - [Images](#images)
 - [HTML](#html)
+- [Testing Enviroment](#testing-enviroment)
 - [Favicon and static files](#favicon-and-static-files)
 - [Proxy](#proxy)
 - [Clearing Public Folder](clearing-public-folder)
@@ -152,6 +153,13 @@ Tested using node 6+, 7+ and 8+
 ```
 $yarn run start
 ```
+__ONCE YOU WANT TO DEPLOY YOUR APP MAKE SURE TO REMOVE. export NODE_ENV=production || SET \"NODE_ENV=production\" && IN START SCRIPT__
+
+make sure the start script look like this when deploy:
+```
+"start": "webpack -p --optimize-minimize && node server.js"
+```
+
 which runs our local express server and run webpack which build the public folder
 
 In case you just want to build the app inproduction use
@@ -203,7 +211,7 @@ aditional the boilerplate comes with 2 popular redux middleware already installe
 ### Using Redux in this Boilerplate
 redux is already configured in this boilerplate but everything is placed in the /redux folder
 
-so in order to use it with react you have to to go App.jsx and import Providr HOC from react-redux package and configure which is available in the boilerplate
+so in order to use it with react you have to to go App.jsx and import Provider HOC from react-redux package and configure module which is available in the boilerplate
 
 ```
 import {Provider} from 'react-redux';
@@ -627,6 +635,56 @@ new HTMLWebpackPlugin ({
 ```
 
 in [multiporpuse-webpack-boilerplate](https://github.com/luigi055/Multi-purpose-webpack3-boilerplate) since is thought to work mainly with html files. i created a html generator within webpack.config.js. in there i got a file calls /views here i put all of my html files and webpack automatically add those. if you want to know how this work. check that repo.
+
+## Testing Enviroment
+
+### Mocha, Chai, Sinon with Enzyme
+By Default the boilerplate use Mocha with chai and sinon in order to test component. everything is up to date and ready to start working. you can see the enviroment already setted in __test__
+
+### Jest with Enzyme
+Of course if your test runner is Jest you can easily install it. the process is very straightforward and in a pair of minutes you can set jest and enzyme in your project.
+
+- First Remove Mocha, chai, sinon dependencies from the boilerplate
+```
+Yarn remove --dev mocha chai sinon sinon-chai
+```
+- Second install jest (you can also install enzyme-to-json and raf)
+__You don't need to install neither enzyme nor enzyme-adapter-react-16 since it is already installed and configured already__
+```
+yarn add --dev jest enzyme-to-json raf
+```
+
+  - __enzyme-to-json__ : Convert Enzyme wrappers to a format compatible with Jest snapshot testing.
+  The serializer is the recommended way to use enzyme-to-json, the installation and usage of it is very easy and allows you to write clean an simple snapshot tests.
+
+In order to use the serializer, just add this line to your Jest configuration:
+```
+"snapshotSerializers": ["enzyme-to-json/serializer"]
+```
+
+  - raf : requestAnimationFrame polyfill for node and the browser.
+  we're going to take advantage of this package within jest to have a better browser like testing enviroment.
+  
+  add raf/polyfill in setupFiles option in jest.config.js
+  ```
+  "setupFiles" : ["raf/polyfill"]
+  ```
+- Third. testing.test.js would be like this
+
+```
+import {shallow, configure} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+
+configure ({adapter: new Adapter ()});
+```
+
+- Fourth. in package.json change some scripts:
+```
+    "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && ./node_modules/.bin/jest",
+    "test:coverage": "export NODE_ENV=test || SET \"NODE_ENV=test\" && ./node_modules/.bin/jest --coverage",
+    "test:update": "export NODE_ENV=test || SET \"NODE_ENV=test\" && ./node_modules/.bin/jest -u"
+```
+
 
 ## Favicon and Static Files
 
