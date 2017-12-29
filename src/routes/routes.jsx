@@ -1,9 +1,9 @@
-import React from 'react';
-import {Route, Switch} from 'react-router';
+import React from "react";
+import { Route, Switch } from "react-router";
 
-import About from '../containers/About';
-import Header from '../components/Header';
-import Features from '../components/Features';
+import About from "../containers/About";
+import Header from "../components/Header";
+import Features from "../components/Features";
 
 export default () => (
   <div>
