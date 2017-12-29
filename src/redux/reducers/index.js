@@ -1,12 +1,12 @@
 // @flow
-import {combineReducers} from 'redux';
+import { combineReducers } from "redux";
 
-function greetReducer () {
-  return 'Hello, There!';
+function greetReducer() {
+  return "Hello, There!";
 }
 
-const reducers = combineReducers ({
-  greet: greetReducer,
+const reducers = combineReducers({
+  greet: greetReducer
 });
 
 export default reducers;

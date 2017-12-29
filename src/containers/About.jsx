@@ -1,18 +1,18 @@
 // @flow
-import React, {Component} from 'react';
+import React, { Component } from "react";
 
 class Search extends Component {
   state = {
-    searchTerm: '',
+    searchTerm: ""
   };
 
   handleSearchTermChange = event => {
-    this.setState ({
-      searchTerm: event.target.value,
+    this.setState({
+      searchTerm: event.target.value
     });
   };
 
-  render () {
+  render() {
     return (
       <div>
         <input
