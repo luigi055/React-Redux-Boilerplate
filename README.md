@@ -62,11 +62,11 @@ _If you need support for svg fonts icons go to webpack.config.js and remove .svg
 
 ## OS Compatibility
 
-This boilerplate is thought to be use in multi platform specificlly in windows 7, 8, 10, linux (tested in ubuntu, antergos), and in OSX.
+This boilerplate is thought to be use in multi platform specificlly in windows 7, 8, 10, linux (tested in ubuntu, lubuntu, antergos), and in OSX.
 
 any problem related with Operating System please i'll be glad to know about it. so, create an issue.
 
-## Installation
+## Installing
 
 First step clone this repo
 ```
@@ -98,10 +98,10 @@ In order to have all the power of this boilerplate you can donwload the followin
 
 ## Webpack
 
-This boilerplate is created using the latest version of webpack which is v3
+This boilerplate is created using the latest version of webpack which is v4
 and there is some consideration in order to this work properly
 
-### Relative vs absolute generated assets in html
+### Relative vs absolute paths generated assets in html
 
 be sure publicPath is set to "/" in the webpack output option. since this prevent generate relative assets. instead we want absolute path for all our address.
 
