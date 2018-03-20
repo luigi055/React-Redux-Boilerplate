@@ -4,7 +4,7 @@
   "description": "Webpack 3 Boilerplate for React + Redux",
   "main": "server.js",
   "scripts": {
-    "start": "export NODE_ENV=production || SET \"NODE_ENV=production\" && webpack -p --optimize-minimize && node server.js",
+    "start": "export NODE_ENV=production || SET \"NODE_ENV=production\" && webpack -p --optimize-minimize & node server.js",
     "dev": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "clear": "rm -rf ./public",
     "build:dev": "rm -rf ./public && webpack",
