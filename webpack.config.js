@@ -53,24 +53,7 @@ const config = {
         exclude: /(node_modules|bower_components)/,
         use: [
           {
-            loader: "babel-loader?cacheDirectory=true",
-            options: {
-              presets: [
-                [
-                  "env",
-                  {
-                    targets: {
-                      browsers: "last 2 versions"
-                    },
-                    modules: false,
-                    loose: true
-                  }
-                ],
-                "flow",
-                "stage-0",
-                "react"
-              ]
-            }
+            loader: "babel-loader"
           }
         ] // end use
       }, // end .jsx? rule
@@ -79,8 +62,8 @@ const config = {
         use: [
           {
             loader: "static-files-loader"
-          },
-        ],
+          }
+        ]
       },
       {
         test: /\.otf|woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
