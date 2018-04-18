@@ -638,47 +638,9 @@ in [multiporpuse-webpack-boilerplate](https://github.com/luigi055/Multi-purpose-
 
 ## Testing Enviroment
 
-### Mocha, Chai, Sinon with Enzyme
-By Default the boilerplate use Mocha with chai and sinon in order to test component. everything is up to date and ready to start working. you can see the enviroment already setted in __test__
-
 ### Jest with Enzyme
-Of course if your test runner is Jest you can easily install it. the process is very straightforward and in a pair of minutes you can set jest and enzyme in your project.
+By Default this boilerplate uses Jest with enzyme.
 
-- First Remove Mocha, chai, sinon dependencies from the boilerplate
-```
-Yarn remove --dev mocha chai sinon sinon-chai
-```
-- Second install jest (you can also install enzyme-to-json and raf)
-__You don't need to install neither enzyme nor enzyme-adapter-react-16 since it is already installed and configured already__
-```
-yarn add --dev jest enzyme-to-json raf
-```
-
-  - __enzyme-to-json__ : Convert Enzyme wrappers to a format compatible with Jest snapshot testing.
-  The serializer is the recommended way to use enzyme-to-json, the installation and usage of it is very easy and allows you to write clean an simple snapshot tests.
-
-In order to use the serializer, just add this line to your Jest configuration:
-```
-"snapshotSerializers": ["enzyme-to-json/serializer"]
-```
-
-  - raf : requestAnimationFrame polyfill for node and the browser.
-  we're going to take advantage of this package within jest to have a better browser like testing enviroment.
-  
-  add raf/polyfill in setupFiles option in jest.config.js
-  ```
-  "setupFiles" : ["raf/polyfill"]
-  ```
-- Third. testing.test.js would be like this
-
-```
-import {shallow, configure} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-
-configure ({adapter: new Adapter ()});
-```
-
-- Fourth. in package.json change some scripts:
 ```
     "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && ./node_modules/.bin/jest",
     "test:coverage": "export NODE_ENV=test || SET \"NODE_ENV=test\" && ./node_modules/.bin/jest --coverage",
