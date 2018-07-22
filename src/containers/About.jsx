@@ -13,15 +13,16 @@ class Search extends Component {
   };
 
   render() {
+    const { searchTerm } = this.state;
     return (
       <div>
         <input
           type="text"
           onChange={this.handleSearchTermChange}
-          value={this.state.searchTerm}
+          value={searchTerm}
           placeholder="Searh and try HOT MODULE REPLACEMENT"
         />
-        <h2>{this.state.searchTerm}</h2>
+        <h2>{searchTerm}</h2>
       </div>
     );
   }

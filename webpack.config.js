@@ -2,6 +2,8 @@ const path = require("path");
 const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
+const ManifestPlugin = require("webpack-manifest-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 const devPORT = 3000;
 const publicFile = "public";
@@ -140,12 +142,18 @@ module.exports = (env, argv) => {
       ] // end rules Array
     }, // end module Object
     plugins: [
+      new CleanWebpackPlugin([path.resolve(__dirname, "public")], {
+        root: path.resolve(__dirname),
+        verbose: true,
+        dry: false
+      }),
       new ExtractTextPlugin("style.css"),
       new HTMLWebpackPlugin({
         title: "New Project",
         filename: "index.html",
         template: "index.html"
       }),
+      new ManifestPlugin(),
       new webpack.DefinePlugin({
         "process.env": {
           NODE_ENV: JSON.stringify(argv.mode)
